@@ -32,6 +32,42 @@
         <description>RUDDER_NONE indicates no rudder system is present.</description>
       </entry>
     </enum>
+    <enum name="ENGINE_STATE">
+      <description>Defines the operation state of an engine.</description>
+      <entry value="0" name="STATE_STOPPED">
+        <description>STATE_STOPPED indicates the engine is not running.</description>
+      </entry>
+      <entry value="1" name="STATE_STARTING">
+        <description>STATE_STARTING indicates the engine is starting.</description>
+      </entry>
+      <entry value="2" name="STATE_RUNNING">
+        <description>STATE_RUNNING indicates the engine is running.</description>
+      </entry>
+      <entry value="3" name="STATE_FAULT">
+        <description>STATE_FAULT indicates a fault in the engine system.</description>
+      </entry>
+      <entry value="4" name="STATE_NONE">
+        <description>STATE_NONE indicates no engine system is present.</description>
+      </entry>
+    </enum>
+    <enum name="TRANSMISSION_STATE">
+      <description>Defines the operation state of a transmission.</description>
+      <entry value="0" name="TRANSMISSION_NEUTRAL">
+        <description>"TRANSMISSION_NEUTRAL indicates the transmission is in neutral."</description>
+      </entry>
+      <entry value="1" name="TRANSMISSION_FORWARD">
+        <description>"TRANSMISSION_FORWARD indicates the transmission is in forward."</description>
+      </entry>
+      <entry value="2" name="TRANSMISSION_REVERSE">
+        <description>"TRANSMISSION_REVERSE indicates the transmission is in reverse."</description>
+      </entry>
+      <entry value="3" name="TRANSMISSION_FAULT">
+        <description>"TRANSMISSION_FAULT indicates a fault in the transmission system."</description>
+      </entry>
+      <entry value="4" name="TRANSMISSION_NONE">
+        <description>"TRANSMISSION_NONE indicates no transmission system is present."</description>
+      </entry>
+    </enum>
     <enum name="AIRSPEED_SENSOR_FLAGS" bitmask="true">
       <description>Airspeed sensor flags</description>
       <entry value="0" name="AIRSPEED_SENSOR_UNHEALTHY">
@@ -557,6 +593,20 @@
       <field type="float[6]" name="engine_leg_trim_position" units="deg">Engine leg trim position.</field>
       <field type="uint8_t[6]" name="rudder_state" enum="RUDDER_STATE">Rudder state.</field>
       <field type="float[6]" name="rudder_position" units="deg">Rudder position.</field>
+    </message>
+    <message id="602" name="BOAT_ENGINE_STATUS">
+      <wip/>
+      <!-- This message is work-in-progress and it can therefore change. It should NOT be used in stable production environments. -->
+      <description>Boat engine status reports status and position of all boat engines.</description>
+      <field type="uint64_t" name="time_usec" units="us">Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.</field>
+      <field type="uint8_t[6]" name="engine_state" enum="ENGINE_STATE">Engine state.</field>
+      <field type="uint8_t[6]" name="engine_load" units="%">Engine load.</field>
+      <field type="uint16_t[6]" name="engine_rpm" units="rpm">Engine RPM.</field>
+      <field type="float" name="fuel_consumption_rate" units="l/h">Fuel consumption rate.</field>
+      <field type="float" name="estimated_fuel_consumed" units="l">Estimated fuel consumed.</field>
+      <field type="uint8_t[6]" name="throttle_position" units="%">Throttle position.</field>
+      <field type="float[6]" name="cylinder_heads_temperature" units="kelvin">Engine temperature.</field>
+      <field type="uint8_t[6]" name="transmission_state" enum="TRANSMISSION_STATE">Transmission state.</field>
     </message>
     <!-- Transactions for parameter protocol -->
     <message id="19" name="PARAM_ACK_TRANSACTION">
