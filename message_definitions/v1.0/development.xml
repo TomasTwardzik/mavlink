@@ -5,6 +5,33 @@
   <version>0</version>
   <dialect>0</dialect>
   <enums>
+    <enum name="ENGINE_LEG_TRIM_STATE">
+      <description>Defines the position status of a engine leg trim.</description>
+      <entry value="0" name="ENGINE_LEG_TRIM_STOWED">
+        <description>ENGINE_LEG_TRIM_STOWED means leg it lifted and the engine should not be started.</description>
+      </entry>
+      <entry value="1" name="ENGINE_LEG_TRIM_CRUISE">
+        <description>ENGINE_LEG_TRIM_CRUISE defines operations position of the engine leg.</description>
+      </entry>
+      <entry value="2" name="ENGINE_LEG_TRIM_FAULT">
+        <description>ENGINE_LEG_TRIM_FAULT indicates a faulty state in engine leg trimming system.</description>
+      </entry>
+      <entry value="3" name="ENGINE_LEG_TRIM_NONE">
+        <description>ENGINE_LEF_TRIM_NONE indicates no engine leg trim system is present.</description>
+      </entry>
+    </enum>
+    <enum name="RUDDER_STATE">
+      <description>Defines health state of a rudder.</description>
+      <entry value="0" name="RUDDER_OK">
+        <description>RUDDER_OK indicates the rudder is operating correctly.</description>
+      </entry>
+      <entry value="1" name="RUDDER_FAULT">
+        <description>RUDDER_FAULT indicates a fault in the rudder system.</description>
+      </entry>
+      <entry value="2" name="RUDDER_NONE">
+        <description>RUDDER_NONE indicates no rudder system is present.</description>
+      </entry>
+    </enum>
     <enum name="AIRSPEED_SENSOR_FLAGS" bitmask="true">
       <description>Airspeed sensor flags</description>
       <entry value="0" name="AIRSPEED_SENSOR_UNHEALTHY">
@@ -521,6 +548,16 @@
     </enum>
   </enums>
   <messages>
+    <message id="601" name="BOAT_ACTUATOR_STATUS">
+      <wip/>
+      <!-- This message is work-in-progress and it can therefore change. It should NOT be used in stable production environments. -->
+      <description>Boat actuator status reports status and position of all boat control surfaces (currently rudders, engine leg trims).</description>
+      <field type="uint64_t" name="time_usec" units="us">Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.</field>
+      <field type="uint8_t[6]" name="engine_leg_trim_state" enum="ENGINE_LEG_TRIM_STATE">Engine leg trim state.</field>
+      <field type="float[6]" name="engine_leg_trim_position" units="deg">Engine leg trim position.</field>
+      <field type="uint8_t[6]" name="rudder_state" enum="RUDDER_STATE">Rudder state.</field>
+      <field type="float[6]" name="rudder_position" units="deg">Rudder position.</field>
+    </message>
     <!-- Transactions for parameter protocol -->
     <message id="19" name="PARAM_ACK_TRANSACTION">
       <description>Response from a PARAM_SET message when it is used in a transaction.</description>
