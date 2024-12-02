@@ -34,20 +34,20 @@
     </enum>
     <enum name="ENGINE_STATE">
       <description>Defines the operation state of an engine.</description>
-      <entry value="0" name="STATE_NONE">
-        <description>STATE_NONE indicates no engine system is present.</description>
+      <entry value="0" name="ENGINE_NONE">
+        <description>ENGINE_NONE indicates no engine system is present.</description>
       </entry>
-      <entry value="1" name="STATE_STOPPED">
-        <description>STATE_STOPPED indicates the engine is not running.</description>
+      <entry value="1" name="ENGINE_STOPPED">
+        <description>ENGINE_STOPPED indicates the engine is not running.</description>
       </entry>
-      <entry value="2" name="STATE_STARTING">
-        <description>STATE_STARTING indicates the engine is starting.</description>
+      <entry value="2" name="ENGINE_STARTING">
+        <description>ENGINE_STARTING indicates the engine is starting.</description>
       </entry>
-      <entry value="3" name="STATE_RUNNING">
-        <description>STATE_RUNNING indicates the engine is running.</description>
+      <entry value="3" name="ENGINE_RUNNING">
+        <description>ENGINE_RUNNING indicates the engine is running.</description>
       </entry>
-      <entry value="4" name="STATE_FAULT">
-        <description>STATE_FAULT indicates a fault in the engine system.</description>
+      <entry value="4" name="ENGINE_FAULT">
+        <description>ENGINE_FAULT indicates a fault in the engine system.</description>
       </entry>
     </enum>
     <enum name="TRANSMISSION_STATE">
