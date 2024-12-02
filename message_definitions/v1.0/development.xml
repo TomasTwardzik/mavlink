@@ -11,13 +11,13 @@
         <description>ENGINE_LEF_TRIM_NONE indicates no engine leg trim system is present.</description>
       </entry>
       <entry value="1" name="ENGINE_LEG_TRIM_STOWED">
-        <description>ENGINE_LEG_TRIM_STOWED means leg it lifted and the engine should not be started.</description>
+        <description>ENGINE_LEG_TRIM_STOWED means leg is lifted and the engine should not be started.</description>
       </entry>
       <entry value="2" name="ENGINE_LEG_TRIM_CRUISE">
-        <description>ENGINE_LEG_TRIM_CRUISE defines operations position of the engine leg.</description>
+        <description>ENGINE_LEG_TRIM_CRUISE defines the active operational position of the engine leg.</description>
       </entry>
       <entry value="3" name="ENGINE_LEG_TRIM_FAULT">
-        <description>ENGINE_LEG_TRIM_FAULT indicates a faulty state in engine leg trimming system.</description>
+        <description>ENGINE_LEG_TRIM_FAULT indicates a faulty state in the engine leg trimming system.</description>
       </entry>
     </enum>
     <enum name="RUDDER_STATE">
@@ -53,19 +53,19 @@
     <enum name="TRANSMISSION_STATE">
       <description>Defines the operation state of a transmission.</description>
       <entry value="0" name="TRANSMISSION_NONE">
-        <description>"TRANSMISSION_NONE indicates no transmission system is present."</description>
+        <description>TRANSMISSION_NONE indicates no transmission system is present.</description>
       </entry>
       <entry value="1" name="TRANSMISSION_NEUTRAL">
-        <description>"TRANSMISSION_NEUTRAL indicates the transmission is in neutral."</description>
+        <description>TRANSMISSION_NEUTRAL indicates the transmission is in neutral.</description>
       </entry>
       <entry value="2" name="TRANSMISSION_FORWARD">
-        <description>"TRANSMISSION_FORWARD indicates the transmission is in forward."</description>
+        <description>TRANSMISSION_FORWARD indicates the transmission is in forward.</description>
       </entry>
       <entry value="3" name="TRANSMISSION_REVERSE">
-        <description>"TRANSMISSION_REVERSE indicates the transmission is in reverse."</description>
+        <description>TRANSMISSION_REVERSE indicates the transmission is in reverse.</description>
       </entry>
       <entry value="4" name="TRANSMISSION_FAULT">
-        <description>"TRANSMISSION_FAULT indicates a fault in the transmission system."</description>
+        <description>TRANSMISSION_FAULT indicates a fault in the transmission system.</description>
       </entry>
     </enum>
     <enum name="AIRSPEED_SENSOR_FLAGS" bitmask="true">
