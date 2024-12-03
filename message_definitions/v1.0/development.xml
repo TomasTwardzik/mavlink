@@ -32,6 +32,18 @@
         <description>RUDDER_FAULT indicates a fault in the rudder system.</description>
       </entry>
     </enum>
+    <enum name="IGNITION_STATE">
+      <description>Defines the operation state of an ignition system.</description>
+      <entry value="0" name="IGNITION_OFF">
+        <description>IGNITION_OFF indicates the ignition is off.</description>
+      </entry>
+      <entry value="1" name="IGNITION_ON">
+        <description>IGNITION_ON indicates the ignition is on.</description>
+      </entry>
+      <entry value="2" name="IGNITION_FAULT">
+        <description>IGNITION_FAULT indicates a fault in the ignition system.</description>
+      </entry>
+    </enum>
     <enum name="ENGINE_STATE">
       <description>Defines the operation state of an engine.</description>
       <entry value="0" name="ENGINE_NONE">
@@ -647,6 +659,7 @@
       <!-- This message is work-in-progress and it can therefore change. It should NOT be used in stable production environments. -->
       <description>Boat engine status reports status and position of all boat engines.</description>
       <field type="uint64_t" name="time_usec" units="us">Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.</field>
+      <field type="uint8_t" name="ignition_state" enum="IGNITION_STATE">Ignition state.</field>
       <field type="uint8_t[6]" name="engine_state" enum="ENGINE_STATE">Engine state.</field>
       <field type="uint8_t[6]" name="engine_load" units="%">Engine load.</field>
       <field type="uint16_t[6]" name="engine_rpm" units="rpm">Engine RPM.</field>
