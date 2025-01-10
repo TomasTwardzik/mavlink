@@ -32,25 +32,13 @@
         <description>RUDDER_FAULT indicates a fault in the rudder system.</description>
       </entry>
     </enum>
-    <enum name="IGNITION_STATE">
-      <description>Defines the operation state of an ignition system.</description>
-      <entry value="0" name="IGNITION_OFF">
-        <description>IGNITION_OFF indicates the ignition is off.</description>
-      </entry>
-      <entry value="1" name="IGNITION_ON">
-        <description>IGNITION_ON indicates the ignition is on.</description>
-      </entry>
-      <entry value="2" name="IGNITION_FAULT">
-        <description>IGNITION_FAULT indicates a fault in the ignition system.</description>
-      </entry>
-    </enum>
     <enum name="ENGINE_STATE">
       <description>Defines the operation state of an engine.</description>
       <entry value="0" name="ENGINE_NONE">
-        <description>ENGINE_NONE indicates no engine system is present.</description>
+        <description>ENGINE_NONE indicates engine is not running and ignition is off.</description>
       </entry>
       <entry value="1" name="ENGINE_STOPPED">
-        <description>ENGINE_STOPPED indicates the engine is not running.</description>
+        <description>ENGINE_STOPPED indicates the engine is not running, but ignition is on.</description>
       </entry>
       <entry value="2" name="ENGINE_STARTING">
         <description>ENGINE_STARTING indicates the engine is starting.</description>
@@ -347,24 +335,12 @@
         <param index="6">Empty</param>
         <param index="7">Empty</param>
       </entry>
-      <entry value="672" name="MAV_CMD_DO_ENGINE_IGNITION" hasLocation="false" isDestination="false">
+      <entry value="672" name="MAV_CMD_DO_SET_ENGINE_STATE" hasLocation="false" isDestination="false">
         <wip/>
         <!-- This message is work-in-progress and it can therefore change. It should NOT be used in stable production environments. -->
-        <description>Controls engine ignition switch. This message should usually switch a relay or any other kind of switching mechanism.</description>
-        <param index="1" label="Engine ignition" minValue="0" increment="1" maxValue="1">Engine ignition switch. 0: turn off, 1: turn on.</param>
-        <param index="2">Empty</param>
-        <param index="3">Empty</param>
-        <param index="4">Empty</param>
-        <param index="5">Empty</param>
-        <param index="6">Empty</param>
-        <param index="7">Empty</param>
-      </entry>
-      <entry value="673" name="MAV_CMD_DO_ENGINE_START" hasLocation="false" isDestination="false">
-        <wip/>
-        <!-- This message is work-in-progress and it can therefore change. It should NOT be used in stable production environments. -->
-        <description>Controls start and stop of an engines.</description>
+        <description>Controls the engine state</description>
         <param index="1" label="Engine bitmask" minValue="0" increment="1" maxValue="255">Engine selection bitmask.</param>
-        <param index="2" label="Command" minValue="0" increment="1" maxValue="1"></param>
+        <param index="2" label="Command" minValue="0" increment="1" maxValue="3"></param>
         <param index="3">Empty</param>
         <param index="4">Empty</param>
         <param index="5">Empty</param>
@@ -659,14 +635,13 @@
       <!-- This message is work-in-progress and it can therefore change. It should NOT be used in stable production environments. -->
       <description>Boat engine status reports status and position of all boat engines.</description>
       <field type="uint64_t" name="time_usec" units="us">Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.</field>
-      <field type="uint8_t" name="ignition_state" enum="IGNITION_STATE">Ignition state.</field>
       <field type="uint8_t[6]" name="engine_state" enum="ENGINE_STATE">Engine state.</field>
       <field type="uint8_t[6]" name="engine_load" units="%">Engine load.</field>
       <field type="uint16_t[6]" name="engine_rpm" units="rpm">Engine RPM.</field>
       <field type="float" name="fuel_consumption_rate" units="l/h">Fuel consumption rate.</field>
-      <field type="float" name="estimated_fuel_consumed" units="l">Estimated fuel consumed.</field>
+      <field type="float[6]" name="oil_pressure" units="kPa">Engine oil pressure.</field>
       <field type="uint8_t[6]" name="throttle_position" units="%">Throttle position.</field>
-      <field type="float[6]" name="intake_manifold_temperature" units="kelvin">Intake manifold temperature.</field>
+      <field type="float[6]" name="engine_coolant_temperature" units="degC">Engine coolant temperature.</field>
       <field type="uint8_t[6]" name="transmission_state" enum="TRANSMISSION_STATE">Transmission state.</field>
     </message>
     <!-- Transactions for parameter protocol -->
